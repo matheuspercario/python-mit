@@ -8,6 +8,10 @@ a = 1
 b = 2
 c = 3
 
+# Testar se é uma eq de 2º grau
+if a == 0:
+    out = - c / b
+
 # Calcular valor de delta
 delta = (b ** 2) - 4 * a * c
 
