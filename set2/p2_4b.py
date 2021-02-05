@@ -13,6 +13,9 @@ def largest_number(input_list):
     Returns:
         int, float: Maior número presente na lista.
     """
+    if len(input_list) in (0, 1):
+        return None
+
     best_so_far = input_list[0]
 
     for value in input_list:
