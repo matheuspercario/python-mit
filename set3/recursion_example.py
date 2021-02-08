@@ -44,7 +44,7 @@ def fib(n: int):
     Returns:
         int: Número da sequência de fibonacci relativo a 'n'.
     """
-    if n < 2:  # Se n == 0 or n == 1
+    if n <= 1:  # fib(0) == 0 | fib(1) == 1
         return n
     else:
         return fib(n - 1) + fib(n - 2)
