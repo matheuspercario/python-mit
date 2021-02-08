@@ -17,7 +17,6 @@ def largest_number(input_list):
         return None
 
     best_so_far = input_list[0]
-
     for value in input_list:
         if value > best_so_far:
             best_so_far = value
