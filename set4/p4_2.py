@@ -21,6 +21,7 @@ def float_comparison(n1, n2):
 
 
 class Point:
+    
     def __init__(self, x, y):
         self.x = x
         self.y = y
