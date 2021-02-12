@@ -17,6 +17,7 @@ class Ant:
         self.col = col
         self.direction = direction
         self.coords = [lin, col]
+        self.steps = 0
 
     def move(self):
         if self.direction == 0:  # NORTE
@@ -29,6 +30,7 @@ class Ant:
             self.col -= 1
 
         self.coords = [self.lin, self.col]
+        self.steps += 1
 
     def turn(self, rule):
         if rule == 'L':
@@ -41,42 +43,41 @@ class Ant:
 
 
 def run_langton(rules, size):
+    # Criar grid
+    grid = [[0] * size for line in range(size)]
+
     # cores baseadas nos indices das regras
     colors = [k for k in range(len(rules))]
-    #print(f"colors ={colors}")
-
-    # Criar & ver grid
-    grid = [[0] * size for line in range(size)]
 
     # Instanciar formiga
     ant = Ant(size // 2, size // 2, 0)
-    # print(ant)
-    count = 0
 
     while True:
         # Dar primeiro passo
         lin, col = ant.coords
-
         if lin < 0 or lin >= size or col < 0 or col >= size:
-            #print(f"ENTROUU BREAK!")
             break
 
         grid[lin][col] = (grid[lin][col] + 1) % len(colors)  # mudar cor
+        ant.move()  # alterar coordenadas formiga
+
+        lin, col = ant.coords
+        if lin < 0 or lin >= size or col < 0 or col >= size:
+            break
+
         dir = rules[grid[lin][col]]  # rules[0] -> 'R' or rules[1] -> 'L' ...
         ant.turn(dir)  # virar formiga de acordo com a cor
-        ant.move()  # alterar coordenadas formiga
-        count += 1
 
     # Movimentação formiga
-    # print_grid(grid)
-    # print(ant)
+    print_grid(grid)
+    print(ant)
 
-    return count, grid
+    return ant.steps, grid
 
 
 # Início programa ---------------------------------
-_rules = 'RL'
-_size = 51
+_rules = 'RLRLL'
+_size = 151
 
 steps, grid = run_langton(_rules, _size)
-print(steps)
+# print(steps)
