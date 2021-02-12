@@ -84,7 +84,6 @@ class Matrix:
                 return None
 
             result = [[0] * ncols_other for line in range(nrows_self)]
-            print(result)
             for i in range(nrows_self):
                 for j in range(ncols_other):
                     for k in range(nrows_other):
