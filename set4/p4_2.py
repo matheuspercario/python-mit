@@ -7,21 +7,20 @@
 import math
 
 
-def float_comparison(n1, n2):
-    diff = abs(n1 - n2)
-    lim = 10 ** (-6)
-    if diff > lim:
+def isclose(x, y, delta=1e-6):
+    diff = abs(x - y)
+    if diff > delta:
         return False
     else:
         return True
 
 # Test Function
-# print(float_comparison(1.222222454545, 1.222222565656))
-# print(float_comparison(1.222222454545, 1.222223545454))
+# print(isclose(1.222222454545, 1.222222565656))
+# print(isclose(1.222222454545, 1.222223545454))
 
 
 class Point:
-    
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -65,9 +64,9 @@ class Triangle:
 
     def side_classification(self):
         l1, l2, l3 = self.side_lengths()
-        if float_comparison(l1, l2) and float_comparison(l1, l3):
+        if isclose(l1, l2) and isclose(l1, l3):
             return 'equilateral'
-        elif float_comparison(l1, l2) or float_comparison(l1, l3) or float_comparison(l2, l3):
+        elif isclose(l1, l2) or isclose(l1, l3) or isclose(l2, l3):
             return 'isosceles'
         else:
             return 'scalene'
@@ -77,7 +76,7 @@ class Triangle:
         a1 = math.degrees(a1)
         a2 = math.degrees(a2)
         a3 = math.degrees(a3)
-        if float_comparison(a1, a2) and float_comparison(a1, a3):
+        if isclose(a1, a2) and isclose(a1, a3):
             return 'equiangular'
         elif 90.0 in (a1, a2, a3):
             return 'right'
@@ -110,9 +109,10 @@ class Triangle:
 # t = Triangle(Point(5, 4), Point(5, 1), Point(7, 1))
 # print(t)
 # print(t.side_lengths())
-# print(f"Radianos = \t{t.angles()}")
+# print(f"Radianos = {t.angles()}")
 # a1, a2, a3 = t.angles()
-# print(f"Graus = \t\t({math.degrees(a1)}, {math.degrees(a2)}, {math.degrees(a3)})")
+# print(
+#     f"Graus = ({math.degrees(a1)}, {math.degrees(a2)}, {math.degrees(a3)})")
 # print(t.side_classification())
 # print(t.angle_classification())
 # print(t.is_right())
